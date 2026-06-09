@@ -81,3 +81,9 @@ jobs:
             ```json
             ${{ steps.create_vm.outputs.log_data }}
             ```
+        - name: Disable Workflow After Success
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow disable "Try to Create OCI VM"
